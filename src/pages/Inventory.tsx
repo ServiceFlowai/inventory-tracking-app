@@ -9,11 +9,10 @@ interface InventoryItem {
   unitOfMeasure: string;
   unitCost: number;
   supplier: string;
-  primaryLocation: string;
-  secondaryLocation: string;
+  quantity: number;
 }
 
-const Inventory = () => {
+const Inventory: React.FC = () => {
   const [items, setItems] = useState<InventoryItem[]>([]);
 
   useEffect(() => {
@@ -23,26 +22,28 @@ const Inventory = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-4">Inventory Management</h1>
-      <table className="min-w-full bg-white">
+    <div className="p-6">
+      <h1 className="text-2xl font-bold text-gray-800">Inventory Management</h1>
+      <table className="min-w-full mt-4 bg-white">
         <thead>
           <tr>
-            <th className="py-2">SKU</th>
-            <th className="py-2">Name</th>
-            <th className="py-2">Category</th>
-            <th className="py-2">Unit Cost</th>
-            <th className="py-2">Supplier</th>
+            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">SKU</th>
+            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Name</th>
+            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Category</th>
+            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Quantity</th>
+            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Unit Cost</th>
+            <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Supplier</th>
           </tr>
         </thead>
         <tbody>
           {items.map(item => (
-            <tr key={item.sku} className="border-b">
-              <td className="py-2">{item.sku}</td>
-              <td className="py-2">{item.name}</td>
-              <td className="py-2">{item.category}</td>
-              <td className="py-2">${item.unitCost.toFixed(2)}</td>
-              <td className="py-2">{item.supplier}</td>
+            <tr key={item.sku}>
+              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{item.sku}</td>
+              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{item.name}</td>
+              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{item.category}</td>
+              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{item.quantity}</td>
+              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">${item.unitCost.toFixed(2)}</td>
+              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{item.supplier}</td>
             </tr>
           ))}
         </tbody>
