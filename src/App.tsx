@@ -1,21 +1,21 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import Inventory from './pages/Inventory';
-import Alerts from './pages/Alerts';
-import Navbar from './components/Navbar';
+import Receiving from './pages/Receiving';
+import Picking from './pages/Picking';
+import Navigation from './components/Navigation';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar />
+      <Navigation />
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="/alerts" element={<Alerts />} />
+        <Route path="/receiving" element={<Receiving />} />
+        <Route path="/picking" element={<Picking />} />
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

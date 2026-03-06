@@ -1,2 +1,19 @@
-:root { color-scheme: light dark; }
-body { margin: 0; font-family: system-ui, sans-serif; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-100 text-gray-900;
+}
+
+nav {
+  @apply bg-white shadow-md;
+}
+
+button {
+  @apply bg-blue-500 text-white;
+}
+
+input {
+  @apply border p-2;
+}

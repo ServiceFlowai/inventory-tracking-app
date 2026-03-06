@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-      <p>Welcome to the Inventory Tracking App Dashboard.</p>
+      <p>Welcome to the Inventory Tracking App. Use the navigation to manage inventory tasks.</p>
     </div>
   );
 };

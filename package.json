@@ -1,26 +1,26 @@
 {
   "name": "inventory-tracking-app",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.0.0",
-    "axios": "^0.24.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "axios": "^1.3.0",
     "lucide-react": "^0.2.0"
   },
   "devDependencies": {
-    "typescript": "^4.5.0",
-    "vite": "^2.6.0",
-    "@vitejs/plugin-react": "^1.0.0",
-    "tailwindcss": "^2.2.19",
-    "postcss": "^8.3.11",
-    "autoprefixer": "^10.3.7"
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.0",
+    "@vitejs/plugin-react": "^3.0.0",
+    "tailwindcss": "^3.2.4",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19"
   }
 }
