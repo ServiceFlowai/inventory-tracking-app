@@ -1,8 +1,21 @@
-export default function App() {
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import ImportExport from './pages/ImportExport';
+import RoleManagement from './pages/RoleManagement';
+import Navbar from './components/Navbar';
+
+const App: React.FC = () => {
   return (
-    <div style={{ fontFamily: 'system-ui', padding: '2rem', maxWidth: 800, margin: '0 auto' }}>
-      <h1>Inventory Tracking App</h1>
-      <p>Project scaffold ready. Start building!</p>
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/import-export" element={<ImportExport />} />
+        <Route path="/role-management" element={<RoleManagement />} />
+      </Routes>
     </div>
   );
-}
+};
+
+export default App;
