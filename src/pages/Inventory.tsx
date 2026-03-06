@@ -1,47 +1,48 @@
-import React from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Inventory: React.FC = () => {
-  const queryClient = useQueryClient();
-  const { data, error, isLoading } = useQuery(['inventory'], async () => {
-    const response = await axios.get('/api/inventory');
-    return response.data;
-  });
+interface InventoryItem {
+  sku: string;
+  name: string;
+  description: string;
+  category: string;
+  unitOfMeasure: string;
+  unitCost: number;
+  supplier: string;
+  primaryLocation: string;
+  secondaryLocation: string;
+}
 
-  const mutation = useMutation(
-    (newItem: any) => axios.post('/api/inventory', newItem),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['inventory']);
-      },
-    }
-  );
+const Inventory = () => {
+  const [items, setItems] = useState<InventoryItem[]>([]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading data</div>;
+  useEffect(() => {
+    axios.get('/api/inventory')
+      .then(response => setItems(response.data))
+      .catch(error => console.error('Error fetching inventory:', error));
+  }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Inventory</h1>
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="text-2xl font-bold mb-4">Inventory Management</h1>
       <table className="min-w-full bg-white">
         <thead>
           <tr>
             <th className="py-2">SKU</th>
             <th className="py-2">Name</th>
             <th className="py-2">Category</th>
-            <th className="py-2">Stock Qty</th>
-            <th className="py-2">Reorder Point</th>
+            <th className="py-2">Unit Cost</th>
+            <th className="py-2">Supplier</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((item: any) => (
-            <tr key={item.sku} className="text-center">
+          {items.map(item => (
+            <tr key={item.sku} className="border-b">
               <td className="py-2">{item.sku}</td>
               <td className="py-2">{item.name}</td>
               <td className="py-2">{item.category}</td>
-              <td className="py-2">{item.stockQty}</td>
-              <td className="py-2">{item.reorderPoint}</td>
+              <td className="py-2">${item.unitCost.toFixed(2)}</td>
+              <td className="py-2">{item.supplier}</td>
             </tr>
           ))}
         </tbody>
